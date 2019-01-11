@@ -1,12 +1,14 @@
 import requests as r
 import sys
 
-lat = input('Enter latitude')
-long = input('Enter longitude')
+(lat, long) = sys.argv[1:]
 
-reqJson = r.get('https://nominatim.openstreetmap.org/reverse?format=json&lat={}&lon={}&zoom=18&addressdetails=1'.format(lat, long))
+try:
+    reqJson = r.get('https://nominatim.openstreetmap.org/reverse?format=json&lat={}&lon={}&zoom=18&addressdetails=1'.format(lat, long))
 
-if(reqJson.status_code == 200):
-    reqJson = reqJson.json()
+    if(reqJson.status_code == 200):
+        reqJson = reqJson.json()
 
-print(reqJson['display_name'])
+    print(reqJson['display_name'])
+except:
+    print("Invalid latitude and longitude")
