@@ -1,7 +1,7 @@
 import pyperclip
+import sys
 
-mac = (input("Input mac"))
-print("\n")
+mac = sys.argv[1]
 
 converted = " "
 
